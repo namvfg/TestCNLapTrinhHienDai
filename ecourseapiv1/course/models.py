@@ -54,6 +54,9 @@ class Lesson(ItemBase):
     image = CloudinaryField(null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.subject
+
 class Interaction(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
@@ -69,7 +72,7 @@ class Like(Interaction):
     class Meta:
         unique_together = ('user', 'lesson')
 
-from django.db.models import Count
-c = Category.objects.annotate(counter=Count('course__id')).values('id', 'name', 'counter').all()
+# from django.db.models import Count
+# c = Category.objects.annotate(counter=Count('course__id')).values('id', 'name', 'counter').all()
 
 

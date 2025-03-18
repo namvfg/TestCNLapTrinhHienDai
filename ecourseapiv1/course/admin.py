@@ -1,9 +1,28 @@
 from django.contrib import admin
+from django.template.response import TemplateResponse
+from django.db.models import Count
 from course.models import Category, Course, Lesson, Comment, Like, Tag
 from django.utils.html import mark_safe
 from django import forms
+from django.urls import path, re_path
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 # Register your models here.
+
+class MyCourseAdminSite(admin.AdminSite):
+    site_header = 'eCourseOnline'
+
+    def get_urls(self):
+        return [
+            path('course-stats/', self.stats_view)
+                 ] + super().get_urls()
+
+    def stats_view(self, request):
+        course_stats = Category.objects.annotate(course_count=Count('course__id')).values('id', 'name', 'course_count')
+        return TemplateResponse(request, 'admin/stats.html', {
+            'course_stats': course_stats
+        })
+
+admin_site = MyCourseAdminSite(name='iCourse')
 
 class CourseForm(forms.ModelForm):
     description = forms.CharField(widget=CKEditorUploadingWidget)
@@ -28,11 +47,11 @@ class MyCourse(admin.ModelAdmin):
             'all': ('/static/css/style.css', )
         }
 
-admin.site.register(Category)
-admin.site.register(Course, MyCourse)
-admin.site.register(Lesson)
-admin.site.register(Comment)
-admin.site.register(Like)
-admin.site.register(Tag)
+admin_site.register(Category)
+admin_site.register(Course, MyCourse)
+admin_site.register(Lesson)
+admin_site.register(Comment)
+admin_site.register(Like)
+admin_site.register(Tag)
 
 
