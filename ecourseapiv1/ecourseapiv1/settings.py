@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-4j=l=cd(o=i9j07k0dvnje#ym@7(53+vw-p@f8k=eq^15w2z$t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['namvfg.pythonanywhere.com']
 
 import pymysql
 
@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'rest_framework',
     'drf_yasg',
-    'oauth2_provider'
+    'oauth2_provider',
+    'cloudinary',
+    'cloudinary_storage'
 
 ]
 
@@ -98,10 +100,10 @@ WSGI_APPLICATION = 'ecourseapiv1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'course',
-        'USER': 'root',
+        'NAME': 'namvfg$course',
+        'USER': 'namvfg',
         'PASSWORD': 'Admin@123',
-        'HOST': ''  # mặc định localhost
+        'HOST': 'namvfg.mysql.pythonanywhere-services.com'  # mặc định localhost
     }
 }
 
@@ -109,6 +111,14 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 import cloudinary
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dcee16rsp',
+    'API_KEY': '645857166697866',
+    'API_SECRET': 'QpsoRSYSM8S4rzFOS51f3615UmQ',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Configuration
 cloudinary.config(
@@ -147,7 +157,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+import os
+
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
