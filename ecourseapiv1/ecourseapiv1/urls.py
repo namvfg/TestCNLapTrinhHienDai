@@ -28,7 +28,7 @@ schema_view = get_schema_view(
         default_version='v1',
         description="APIs for CourseApp",
         contact=openapi.Contact(email="dunnguyen190404@gmail.com"),
-        license=openapi.License(name="Nguyễn Đông Dun@2021"),
+        license=openapi.License(name="Nguyễn Đông Dun 2025"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),

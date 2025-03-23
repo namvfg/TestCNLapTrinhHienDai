@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-4j=l=cd(o=i9j07k0dvnje#ym@7(53+vw-p@f8k=eq^15w2z$t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['namvfg.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 import pymysql
 
@@ -48,9 +48,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'rest_framework',
     'drf_yasg',
-    'oauth2_provider',
-    'cloudinary',
-    'cloudinary_storage'
+    'oauth2_provider'
 
 ]
 
@@ -100,10 +98,10 @@ WSGI_APPLICATION = 'ecourseapiv1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'namvfg$course',
-        'USER': 'namvfg',
+        'NAME': 'course',
+        'USER': 'root',
         'PASSWORD': 'Admin@123',
-        'HOST': 'namvfg.mysql.pythonanywhere-services.com'  # mặc định localhost
+        'HOST': ''  # mặc định localhost
     }
 }
 
@@ -111,7 +109,6 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 import cloudinary
-
 
 # Configuration
 cloudinary.config(
@@ -151,10 +148,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-import os
-
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -163,4 +157,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CLIENT_ID = 'mh8pdAhpdW4wFTI7sH4KruoUGS92LseLBlPrLMN6'
 CLIENT_SECRET = 'lHQwFwwyRJe1mZavWryS0PuXc5kXCo7eU70dUO77dxnWk7kQrXAmTB4vFCvVcaqnP6oH8veffiOgfLmPhYTMcdXZWIwX2UmjDVMYAUb9Bq7KDpXUxejiudLj1VqByTWi'
-
