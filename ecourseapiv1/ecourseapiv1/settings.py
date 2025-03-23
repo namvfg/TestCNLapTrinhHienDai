@@ -112,19 +112,13 @@ DATABASES = {
 
 import cloudinary
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dcee16rsp',
-    'API_KEY': '645857166697866',
-    'API_SECRET': 'QpsoRSYSM8S4rzFOS51f3615UmQ',
-}
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Configuration
 cloudinary.config(
     cloud_name = "dcee16rsp",
     api_key = "645857166697866",
     api_secret = "QpsoRSYSM8S4rzFOS51f3615UmQ", # Click 'View API Keys' above to copy your API secret
+    api_proxy = 'http://proxy.server:3128',
     secure=True
 )
 
