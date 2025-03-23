@@ -115,7 +115,8 @@ cloudinary.config(
     cloud_name = "dcee16rsp",
     api_key = "645857166697866",
     api_secret = "QpsoRSYSM8S4rzFOS51f3615UmQ", # Click 'View API Keys' above to copy your API secret
-    secure=True
+    api_proxy = 'http://proxy.server:3128',
+    secure=True,
 )
 
 AUTH_PASSWORD_VALIDATORS = [
